@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* THEMES */
+body.theme-neutral {
+  --bg-image: none;
+  --accent: #4b5563; 
+  --accent2: #e5e7eb;
+  --surface: rgba(255, 255, 255, 0.95);
+  --border: #d1d5db;
+  --ink: #111827;
+  --ink2: #6b7280;
+  --nav-bg: rgba(249, 250, 251, 0.95);
+  --btn-bg: #374151; 
+  --btn-color: #ffffff;
+  background-color: #f3f4f6;
+}
+
+body.theme-pink {
+  --bg-image: url('/images/pink-bg.jpg');
+  --accent: #e8a0b4;
+  --accent2: #f5c6d0;
+  --surface: rgba(255, 240, 245, 0.85);
+  --border: #f0b8c8;
+  --ink: #5a3a3a;
+  --ink2: #9a6a7a;
+  --nav-bg: rgba(255, 220, 230, 0.9);
+  --btn-bg: #e8a0b4;
+  --btn-color: #fff;
+}
+
+body.theme-cozy {
+  --bg-image: url('/images/cozy-bg.jpg');
+  --accent: #a8c5a0;
+  --accent2: #c8dfc4;
+  --surface: rgba(240, 248, 235, 0.88);
+  --border: #b8d4b0;
+  --ink: #3a5a3a;
+  --ink2: #6a8a6a;
+  --nav-bg: rgba(220, 240, 215, 0.9);
+  --btn-bg: #a8c5a0;
+  --btn-color: #89af8c;
+}
+
+body.theme-dark {
+  --bg-image: none;
+  --accent: #c4b5f4;
+  --accent2: #7b6ea4;
+  --surface: rgba(40, 35, 60, 0.98);
+  --border: #6a5f80;
+  --ink: #ffffff;
+  --ink2: #d0c8e8;
+  --nav-bg: rgba(15, 10, 30, 0.98);
+  --btn-bg: #9b8ec4;
+  --btn-color: #ffffff;
+  background-color: #0f0a1e;
+}
+
+.app-bg {
+  min-height: 100vh;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+}
+
+.app-shell {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* NAV */
+.nav {
+  width: 200px;
+  min-height: 100vh;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  gap: 0.5rem;
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.nav-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.nav a:hover, .nav a.active {
+  background: var(--accent2);
+  color: var(--ink);
+}
+
+.theme-switcher {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.theme-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-btn:hover, .theme-btn.active {
+  background: var(--btn-bg);
+  color: var(--btn-color);
+}
+
+/* CONTENT */
+.content {
+  margin-left: 200px;
+  padding: 2rem;
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+button, .btn {
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+input, textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .nav-title { display: none; }
+  .theme-switcher { flex-direction: row; margin-top: 0; }
+
+  .content {
+    margin-left: 0;
+    margin-bottom: 80px;
+    padding: 1rem;
+  }
+}

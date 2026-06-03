@@ -1,0 +1,6 @@
+{
+  "appId": "com.studybuddy.app",
+  "appName": "Study Buddy",
+  "webDir": "dist",
+  "bundleWebRuntime": false
+}
