@@ -617,8 +617,6 @@ export default function Notes() {
             </div>
           </div>
         )}
-
-        {/* THE NEW LAYERED NOTEBOOK PAGES */}
         {/* THE NEW LAYERED NOTEBOOK PAGES (Upgraded with 3D Flip & React-PDF) */}
         <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem auto' }}>
           <HTMLFlipBook 
@@ -664,27 +662,23 @@ export default function Notes() {
             </BookPage>
 
             {/* PAGE 2 */}
-            {bookView === 'double' && (
-              <BookPage>
-                {openNotebook.pdfBg ? (
-                  <Document file={openNotebook.pdfBg} loading="Loading PDF...">
-                    <PdfPage pageNumber={2} width={450} renderTextLayer={false} renderAnnotationLayer={false} />
-                  </Document>
-                ) : (
-                  <PageBackground style={openNotebook.page} color={openNotebook.color} />
-                )}
-                <textarea
-                  value={openNotebook.content2}
-                  onChange={e => updateNotebookField(openNotebook.id, 'content2', e.target.value)}
-                  placeholder="Continue writing…"
-                  style={{ ...textareaStyle(openNotebook, topPad), zIndex: 1 }}
-                />
-              </BookPage>
-            )}
+            <BookPage>
+              {openNotebook.pdfBg ? (
+                <Document file={openNotebook.pdfBg} loading="Loading PDF...">
+                  <PdfPage pageNumber={2} width={450} renderTextLayer={false} renderAnnotationLayer={false} />
+                </Document>
+              ) : (
+                <PageBackground style={openNotebook.page} color={openNotebook.color} />
+              )}
+              <textarea
+                value={openNotebook.content2}
+                onChange={e => updateNotebookField(openNotebook.id, 'content2', e.target.value)}
+                placeholder="Continue writing…"
+                style={{ ...textareaStyle(openNotebook, topPad), zIndex: 1 }}
+              />
+            </BookPage>
           </HTMLFlipBook>
         </div>
-      
-
         <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--ink2,#999)', marginTop: '0.6rem' }}>
           {(openNotebook.content + ' ' + openNotebook.content2).trim().split(/\s+/).filter(Boolean).length} words
         </p>
