@@ -36,20 +36,74 @@ export default function Flashcards() {
           Card {idx + 1} of {cards.length}
         </p>
 
+        {/* Flip card container - gives 3D perspective */}
         <div
-          className="card"
           onClick={() => setFlipped({ ...flipped, [card.id]: !isFlipped })}
           style={{
-            minHeight: '180px', display: 'flex', alignItems: 'center',
-            justifyContent: 'center', cursor: 'pointer',
-            fontSize: '1.2rem', textAlign: 'center',
-            background: isFlipped ? '#eef2ff' : 'var(--surface)',
-            flexDirection: 'column',
+            perspective: '1000px',
+            minHeight: '180px',
+            cursor: 'pointer',
+            maxWidth: '420px',
+            margin: '0 auto',
           }}
         >
-          <div>{isFlipped ? card.back : card.front}</div>
-          <div style={{ fontSize: '12px', color: 'var(--ink2)', marginTop: '8px' }}>
-            {isFlipped ? '(answer)' : '(tap to reveal)'}
+          {/* This div actually rotates */}
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '180px',
+              transition: 'transform 0.6s',
+              transformStyle: 'preserve-3d',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            }}
+          >
+            {/* FRONT FACE */}
+            <div
+              className="card"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backfaceVisibility: 'hidden',
+                fontSize: '1.2rem',
+                textAlign: 'center',
+                background: 'var(--surface)',
+              }}
+            >
+              <div>{card.front}</div>
+              <div style={{ fontSize: '12px', color: 'var(--ink2)', marginTop: '8px' }}>
+                (tap to reveal)
+              </div>
+            </div>
+
+            {/* BACK FACE */}
+            <div
+              className="card"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)',
+                fontSize: '1.1rem',
+                textAlign: 'center',
+                background: '#eef2ff',
+                padding: '1rem',
+                overflowY: 'auto',
+              }}
+            >
+              <div>{card.back}</div>
+              <div style={{ fontSize: '12px', color: 'var(--ink2)', marginTop: '8px' }}>
+                (answer)
+              </div>
+            </div>
           </div>
         </div>
 
