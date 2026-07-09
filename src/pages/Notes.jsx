@@ -2,8 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import React, { forwardRef } from 'react'
 import { Document, Page as PdfPage, pdfjs } from 'react-pdf'
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
-import 'react-pdf/dist/esm/Page/TextLayer.css'
+import 'react-pdf/dist/Page/AnnotationLayer.css'
+import 'react-pdf/dist/Page/TextLayer.css'
 
 // This sets up the PDF worker so your browser can process the dropped PDFs
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
