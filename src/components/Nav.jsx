@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BookOpen, Timer, Layers, Bot, Bell } from 'lucide-react'
+import { BookOpen, Timer, Layers, Bot, Bell, ClipboardCheck } from 'lucide-react'
 
 export default function Nav({ theme, setTheme, onLogout }) {
   // Added the Neutral White theme to the very top of the list
@@ -29,6 +29,9 @@ export default function Nav({ theme, setTheme, onLogout }) {
       </NavLink>
       <NavLink to="/reminders">
         <Bell size={16} /> Reminders
+      </NavLink>
+      <NavLink to="/tests">
+        <ClipboardCheck size={16} /> Tests
       </NavLink>
 
       <div className="theme-switcher">

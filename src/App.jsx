@@ -8,6 +8,7 @@ import TimerPage from './pages/TimerPage'
 import Flashcards from './pages/Flashcards'
 import AiTutor from './pages/AiTutor'
 import Reminders from './pages/Reminders'
+import Tests from './pages/Tests'
 import Login from './pages/Login'
 import './index.css'
 
@@ -101,6 +102,7 @@ export default function App() {
               <Route path="/flashcards" element={<Flashcards />} />
               <Route path="/ai" element={<AiTutor />} />
               <Route path="/reminders" element={<Reminders />} />
+              <Route path="/tests" element={<Tests />} />
             </Routes>
           </main>
         </div>
