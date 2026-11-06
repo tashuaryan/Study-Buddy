@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const GROQ_MODEL = "llama-3.3-70b-versatile";
+const GROQ_MODEL = "openai/gpt-oss-120b";
 
 const SUBJECTS = ["All Subjects", "Math", "Science", "History", "English", "Programming", "Geography", "Economics"];
 
@@ -67,16 +67,16 @@ ${levelText} ${subjectText} ${quizText}
     
     try {
       // 1. Explicitly check for the API key to catch missing .env files
-      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
+      https://api.groq.com/openai/v1/chat/completions
       if (!apiKey) {
-        throw new Error("Missing API Key. Ensure VITE_GROQ_API_KEY is in your .env file.");
+        throw new Error("Missing API Key. Ensure GROQ_API_KEY is in your .env file.");
       }
 
-      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      const response = await fetch("https://localhost:3001/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
+
         },
         body: JSON.stringify({
           model: GROQ_MODEL,

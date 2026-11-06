@@ -3,7 +3,6 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import fetch from 'node-fetch';
 
 const app = express();
 
@@ -14,22 +13,35 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 app.post('/api/chat', async (req, res) => {
   try {
+    if (!GROQ_API_KEY) {
+      return res.status(500).json({
+        error: 'GROQ_API_KEY is missing from backend environment variables.'
+      });
+    }
+
     const response = await fetch(
       'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${GROQ_API_KEY}`,
+          'Authorization': 'Bearer ${GROQ_API_KEY}',
         },
         body: JSON.stringify(req.body),
       }
     );
 
     const data = await response.json();
-    console.log("GROQ RESPONSE:", data);
+
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+
     res.json(data);
+
   } catch (err) {
+    console.error('Groq API error:', err);
+
     res.status(500).json({
       error: err.message,
     });
@@ -37,5 +49,5 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log('✅ Proxy running on http://localhost:3001');
+  console.log('Proxy running on http://localhost:3001');
 });
